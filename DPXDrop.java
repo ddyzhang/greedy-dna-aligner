@@ -10,22 +10,25 @@ public class DPXDrop {
 		String a = "";
 		String b = "";
 
+		int M = a.length();
+		int N = b.length();
+
 		// Match, mismatch, and indel scores
-		int mat = 0;
-		int mis = 0;
-		int ind = 0;
+		double mat = 0;
+		double mis = 0;
+		double ind = 0;
 
 		// Predefined X for X-drop
-		int X = 0;
+		double X = 0;
 
 		int stringLength = 0;
-		int TPrime = 0;
-		int T = 0;
+		double TPrime = 0;
+		double T = 0;
 
 		// Since we are dealing with decimals in our indices, we double the array size
 		s = new double[stringLength*2][stringLength*2];
 		s[0][0] = 0;
-		int k = 0;
+		double k = 0;
 		double L = 0;
 		double U = 0;
 		while (L <= (U+1)) {
@@ -39,10 +42,10 @@ public class DPXDrop {
 					double second = 0;
 					double third = 0;
 					double fourth = 0;
-					if (L <= (i-0.5) && (i-0.5) <= U && a.charAt(i) == b.charAt(j)) {
+					if (L <= (i-0.5) && (i-0.5) <= U && a.charAt((int)i) == b.charAt((int)j)) {
 						first = S(i-0.5, j-0.5) + (mat/2);
 					}
-					if (L <= (i-0.5) && (i-0.5) <= U && a.charAt(i) != b.charAt(j)) {
+					if (L <= (i-0.5) && (i-0.5) <= U && a.charAt((int)i) != b.charAt((int)j)) {
 						second = S(i-0.5, j-0.5) + (mis/2);
 					}
 					if (i <= U) {
@@ -55,7 +58,7 @@ public class DPXDrop {
 					writeS(max, i, j);
 				} else {
 					// TODO Second DP recurrence
-					if (a.charAt((int)i+0.5) == b.charAt((int)j+0.5)) {
+					if (a.charAt((int)(i+0.5)) == b.charAt((int)(j+0.5))) {
 						writeS(S(i-0.5, j-0.5) + (mat/2), i, j);
 					} else {
 						writeS(S(i-0.5, j-0.5) + (mis/2), i, j);
@@ -66,7 +69,23 @@ public class DPXDrop {
 					writeS(Double.NEGATIVE_INFINITY, i, j);
 				}
 			}
-					
+			double iTemp = 0;
+			double minL = Double.POSITIVE_INFINITY;
+			double maxU = Double.NEGATIVE_INFINITY;
+			while (iTemp <= k) {
+				if (S(iTemp, k-iTemp) < minL) {
+					minL = S(iTemp, k-iTemp);
+				}
+				if (S(iTemp, k-iTemp) > maxU) {
+					maxU = S(iTemp, k-iTemp);
+				}
+				iTemp += 0.5;
+			}
+			L = minL;
+			U = maxU;
+			L = Math.max(L, k+1-N);
+			U = Math.min(U, M-1);
+			T = TPrime;
 		}
 		System.out.println(TPrime);
 	}
