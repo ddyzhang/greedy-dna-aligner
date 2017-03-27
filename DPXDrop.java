@@ -14,9 +14,9 @@ public class DPXDrop {
 		int N = b.length();
 
 		// Match, mismatch, and indel scores
-		double mat = 3;
-		double mis = -2;
-		double ind = -1;
+		double mat = 2;
+		double mis = -1;
+		double ind = -2;
 
 		// Predefined X for X-drop
 		double X = 2;
@@ -86,7 +86,7 @@ public class DPXDrop {
 			U = Math.min(U, M-1);
 			T = TPrime;
 		}
-		System.out.println(TPrime);
+		System.out.println("T Prime is: " + TPrime);
 	}
 
 	private static boolean isInteger(double x) {
