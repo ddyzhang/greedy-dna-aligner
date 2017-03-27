@@ -73,11 +73,11 @@ public class DPXDrop {
 			double maxU = Double.NEGATIVE_INFINITY;
 			while (iTemp <= k) {
 				if (S(iTemp, k-iTemp) < minL && S(iTemp, k-iTemp) > Double.NEGATIVE_INFINITY) {
-					minL = S(iTemp, k-iTemp);
+					minL = iTemp;//S(iTemp, k-iTemp);
 					System.out.println("New min is: " + minL);
 				}
 				if (S(iTemp, k-iTemp) > maxU && S(iTemp, k-iTemp) > Double.NEGATIVE_INFINITY) {
-					maxU = S(iTemp, k-iTemp);
+					maxU = iTemp;//S(iTemp, k-iTemp);
 					System.out.println("New max is: " + maxU);
 				}
 				iTemp += 0.5;
