@@ -7,16 +7,16 @@ public class DPXDrop {
 	private static double s[][];
 	
 	public static void main(String[] args) {
-		String a = "AATTATGG";
-		String b = "ACATTGTTG";
+		String a = "ACTACTACT";
+		String b = "ACTACTACT";
 
 		int M = a.length();
 		int N = b.length();
 
 		// Match, mismatch, and indel scores
-		double mat = 2;
-		double mis = -1;
-		double ind = -2;
+		double mat = 4;
+		double mis = -2;
+		double ind = -4;
 
 		// Predefined X for X-drop
 		double X = 2;
@@ -26,6 +26,12 @@ public class DPXDrop {
 
 		// Since we are dealing with decimals in our indices, we double the array size
 		s = new double[M*2+2][N*2+2];
+		for(int x = 0; x < M*2+2; x++){
+			for(int y = 0; y < N*2+2; y++){
+				s[x][y] = Double.NEGATIVE_INFINITY;
+			}
+		}
+		
 		s[0][0] = 0;
 		double k = 0;
 		double L = 0;
@@ -68,25 +74,44 @@ public class DPXDrop {
 					writeS(Double.NEGATIVE_INFINITY, i, j);
 				}
 			}
-			double iTemp = 0;
+			/*double iTemp = 0;
 			double minL = Double.POSITIVE_INFINITY;
 			double maxU = Double.NEGATIVE_INFINITY;
 			while (iTemp <= k) {
 				if (S(iTemp, k-iTemp) < minL && S(iTemp, k-iTemp) > Double.NEGATIVE_INFINITY) {
-					minL = iTemp;
+					minL = iTemp;//S(iTemp, k-iTemp);
+					System.out.println("New min is: " + minL);
 				}
 				if (S(iTemp, k-iTemp) > maxU && S(iTemp, k-iTemp) > Double.NEGATIVE_INFINITY) {
-					maxU = iTemp;
+					maxU = iTemp;//S(iTemp, k-iTemp);
+					System.out.println("New max is: " + maxU);
 				}
 				iTemp += 0.5;
+			}*/
+			
+			for(double iTemp = 0; iTemp <= k/2 ; iTemp += 0.5){
+				if(S(iTemp, k/2-iTemp) > Double.NEGATIVE_INFINITY){
+					L = iTemp;
+					break;
+				}
 			}
-			L = minL;
-			U = maxU;
+			
+			for(double iTemp = k/2; iTemp >= 0; iTemp -= 0.5){
+				if(S(iTemp, k/2-iTemp) > Double.NEGATIVE_INFINITY){
+					U = iTemp;
+					break;
+				}
+			}
+			
+			//L = minL;
+			//U = maxU;
 			L = Math.max(L, k+1-N);
 			U = Math.min(U, M-1);
 			T = TPrime;
+			System.out.println("L: " + L);
+			System.out.println("U: " + U);
 		}
-		System.out.println("T Prime is: " + TPrime);
+		System.out.println(TPrime);
 	}
 
 	private static boolean isInteger(double x) {
