@@ -26,7 +26,7 @@ public class Greedy {
 	}
 	
 	public static int SPrime(int i, int j, int d) {
-		return ((i*j)*mat/2) - d*(mat-mis); 
+		return ((i+j)*mat/2) - d*(mat-mis); 
 	}
 	
 	public static void main(String[] args) {
