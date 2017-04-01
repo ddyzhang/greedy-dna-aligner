@@ -3,11 +3,11 @@ import java.util.*;
 public class Greedy {
 	
 	// add empty space so characters start at 1
-	static String a = " ACTGACTG";
-	static String b = " GACTGGGG";
+	static String a = "ACTGACTG";
+	static String b = "GACTGGGG";
 
-	static int M = a.length() - 1;
-	static int N = b.length() - 1;
+	static int M = a.length();
+	static int N = b.length();
 
 	// Match, mismatch, and indel scores
 	static int mat = 4;
@@ -34,14 +34,14 @@ public class Greedy {
 		
 		//initializing all values to -infinity for prunning
 		int[][] R = new int[Math.max(M, N)][Math.max(M, N)];
-		for(int x = 0; x < Math.max(M, N); x++){
-			for(int y = 0; y < Math.max(M, N); y++){
+		for(int x = 0; x <= Math.max(M, N); x++){
+			for(int y = 0; y <= Math.max(M, N); y++){
 				R[x][y] = Integer.MIN_VALUE;
 			}
 		}
 		
 		int[] T = new int[Math.max(M, N) + 1];
-		while ((i<Math.min(M, N)) && (a.charAt(i + 1) == b.charAt(i + 1))) {
+		while ((i<Math.min(M, N)) && (a.charAt(i) == b.charAt(i))) {
 			i++;
 		}
 		R[0][0] = i;
@@ -73,7 +73,7 @@ public class Greedy {
 				
 				int j = i-k;
 				if ((i > Integer.MIN_VALUE) && (Greedy.SPrime(i, j, d) >= (T[dprime]-X))) {
-					while((i<M - 1) && (j<N - 1) && (a.charAt(i+1) == b.charAt(j+1))) {
+					while((i<M - 1) && (j<N - 1) && (a.charAt(i) == b.charAt(j))) {
 						i++;
 						j++;
 					}
@@ -91,14 +91,14 @@ public class Greedy {
 			
 			
 			//line 19 of psuedocode
-			for(int k = 0; k < Math.max(M, N); k++){
+			for(int k = 0; k <= Math.max(M, N); k++){
 				if(R[d][k] > Integer.MIN_VALUE){
 					L = k;
 					break;
 				}
 			}
 			//line 20 of psuedocode
-			for(int k = Math.max(M, N) - 1; k >= 0; k--){
+			for(int k = Math.max(M, N); k >= 0; k--){
 				if(R[d][k] > Integer.MIN_VALUE){
 					U = k;
 					break;
@@ -106,7 +106,7 @@ public class Greedy {
 			}
 			
 			//line 21 of psuedocode
-			for(int k = Math.max(M, N) - 1; k >= 0; k--){
+			for(int k = Math.max(M, N); k >= 0; k--){
 				if(R[d][k] == N + k){
 					L = Math.max(L, k + 2);
 					break;
@@ -114,7 +114,7 @@ public class Greedy {
 			}
 			
 			//line 22 of psuedocode
-			for(int k = 0; k < Math.max(M, N); k++){
+			for(int k = 0; k <= Math.max(M, N); k++){
 				if(R[d][k] == M){
 					U = Math.min(U, k - 2);
 					break;
