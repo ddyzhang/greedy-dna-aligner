@@ -2,9 +2,8 @@ import java.util.*;
 
 public class Greedy {
 	
-	// add empty space so characters start at 1
 	static String a = "ACTGACTG";
-	static String b = "GACTGGGG";
+	static String b = "ACTGACTG";
 
 	static int M = a.length();
 	static int N = b.length();
@@ -33,7 +32,7 @@ public class Greedy {
 		int i=0;
 		
 		//initializing all values to -infinity for prunning
-		int[][] R = new int[Math.max(M, N)][Math.max(M, N)];
+		int[][] R = new int[Math.max(M, N)+1][Math.max(M, N)+1];
 		for(int x = 0; x <= Math.max(M, N); x++){
 			for(int y = 0; y <= Math.max(M, N); y++){
 				R[x][y] = Integer.MIN_VALUE;

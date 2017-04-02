@@ -122,14 +122,14 @@ public class DPXDrop {
 		if (i < 0 || j < 0) {
 			return Double.NEGATIVE_INFINITY;
 		}
-		return s[(int)i*2][(int)j*2];
+		return s[(int)(i*2)][(int)(j*2)];
 	}
 
 	private static void writeS(double value, double i, double j) {
 		if (i < 0 || j < 0) {
 			return;
 		}
-		s[(int)i*2][(int)j*2] = value;
+		s[(int)(i*2)][(int)(j*2)] = value;
 	}
 
 }
