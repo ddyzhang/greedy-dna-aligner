@@ -2,11 +2,11 @@ import java.util.*;
 
 public class Greedy {
 	
-	static String a = "ACTGACTG";
-	static String b = "ACTGACTG";
+	static String a = "ACTTCTACATA";
+	static String b = "ACTTCTACTTC";
 
-	static int M = a.length();
-	static int N = b.length();
+	static int M = a.length()-1;
+	static int N = b.length()-1;
 
 	// Match, mismatch, and indel scores
 	static int mat = 4;
@@ -49,7 +49,7 @@ public class Greedy {
 		int d = 0;
 		int L = 0;
 		int U = 0;
-		while (!(L > U + 2)) {
+		while ((L > U + 2)) {
 			d++;
 			int dprime = (int)Math.max((d - Math.floor((X+mat/2) / (mat-mis)) - 1), 0);
 			for (int k=Math.max(0,L-1); k<=U+1; k++) {
@@ -147,7 +147,7 @@ public class Greedy {
 			U = Math.min(U, tempMin-2);
 			
 			*/
-			System.out.println("L and U is: " + L + " " + U);
+			// System.out.println("L and U is: " + L + " " + U);
 		}
 		System.out.println("T Prime is: " + TPrime);	
 	}

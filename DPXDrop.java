@@ -7,8 +7,8 @@ public class DPXDrop {
 	private static double s[][];
 	
 	public static void main(String[] args) {
-		String a = "ACTTCTACA";
-		String b = "ACTTCTACA";
+		String a = "ACTTCTACATA";
+		String b = "ACTTCTACAAA";
 
 		int M = a.length()-1;
 		int N = b.length()-1;
@@ -90,7 +90,6 @@ public class DPXDrop {
 			}*/
 			
 			for(double iTemp = 0; iTemp <= k; iTemp += 0.5){
-				System.out.println("First loop: " + iTemp + " " + k);
 				if (S(iTemp, k-iTemp) > Double.NEGATIVE_INFINITY){
 					L = iTemp;
 					break;
@@ -109,10 +108,10 @@ public class DPXDrop {
 			L = Math.max(L, k+1-N);
 			U = Math.min(U, M-1);
 			T = TPrime;
-			System.out.println("L: " + L);
-			System.out.println("U: " + U);
+			// System.out.println("L: " + L);
+			// System.out.println("U: " + U);
 		}
-		System.out.println(TPrime);
+		System.out.println("T Prime is: " + TPrime);
 	}
 
 	private static boolean isInteger(double x) {
