@@ -7,11 +7,11 @@ public class DPXDrop {
 	private static double s[][];
 	
 	public static void main(String[] args) {
-		String a = "ACTACTACT";
-		String b = "ACTACTACT";
+		String a = "ACTTCTACA";
+		String b = "ACTTCTACA";
 
-		int M = a.length();
-		int N = b.length();
+		int M = a.length()-1;
+		int N = b.length()-1;
 
 		// Match, mismatch, and indel scores
 		double mat = 4;
@@ -25,7 +25,7 @@ public class DPXDrop {
 		double T = 0;
 
 		// Since we are dealing with decimals in our indices, we double the array size
-		s = new double[M*2+2][N*2+2];
+		s = new double[M*M][N*N];
 		for(int x = 0; x < M*2+2; x++){
 			for(int y = 0; y < N*2+2; y++){
 				s[x][y] = Double.NEGATIVE_INFINITY;
@@ -89,15 +89,16 @@ public class DPXDrop {
 				iTemp += 0.5;
 			}*/
 			
-			for(double iTemp = 0; iTemp <= k/2 ; iTemp += 0.5){
-				if(S(iTemp, k/2-iTemp) > Double.NEGATIVE_INFINITY){
+			for(double iTemp = 0; iTemp <= k; iTemp += 0.5){
+				System.out.println("First loop: " + iTemp + " " + k);
+				if (S(iTemp, k-iTemp) > Double.NEGATIVE_INFINITY){
 					L = iTemp;
 					break;
 				}
 			}
 			
-			for(double iTemp = k/2; iTemp >= 0; iTemp -= 0.5){
-				if(S(iTemp, k/2-iTemp) > Double.NEGATIVE_INFINITY){
+			for(double iTemp = k; iTemp >= 0; iTemp -= 0.5){
+				if (S(iTemp, k-iTemp) > Double.NEGATIVE_INFINITY){
 					U = iTemp;
 					break;
 				}
