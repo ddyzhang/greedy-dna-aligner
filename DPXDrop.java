@@ -74,20 +74,6 @@ public class DPXDrop {
 					writeS(Double.NEGATIVE_INFINITY, i, j);
 				}
 			}
-			/*double iTemp = 0;
-			double minL = Double.POSITIVE_INFINITY;
-			double maxU = Double.NEGATIVE_INFINITY;
-			while (iTemp <= k) {
-				if (S(iTemp, k-iTemp) < minL && S(iTemp, k-iTemp) > Double.NEGATIVE_INFINITY) {
-					minL = iTemp;//S(iTemp, k-iTemp);
-					System.out.println("New min is: " + minL);
-				}
-				if (S(iTemp, k-iTemp) > maxU && S(iTemp, k-iTemp) > Double.NEGATIVE_INFINITY) {
-					maxU = iTemp;//S(iTemp, k-iTemp);
-					System.out.println("New max is: " + maxU);
-				}
-				iTemp += 0.5;
-			}*/
 			
 			for(double iTemp = 0; iTemp <= k; iTemp += 0.5){
 				if (S(iTemp, k-iTemp) > Double.NEGATIVE_INFINITY){
@@ -103,13 +89,9 @@ public class DPXDrop {
 				}
 			}
 			
-			//L = minL;
-			//U = maxU;
 			L = Math.max(L, k+1-N);
 			U = Math.min(U, M-1);
 			T = TPrime;
-			// System.out.println("L: " + L);
-			// System.out.println("U: " + U);
 		}
 		System.out.println("T Prime is: " + TPrime);
 	}

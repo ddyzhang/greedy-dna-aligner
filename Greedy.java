@@ -53,7 +53,6 @@ public class Greedy {
 			d++;
 			int dprime = (int)Math.max((d - Math.floor((X+mat/2) / (mat-mis)) - 1), 0);
 			for (int k=Math.max(0,L-1); k<=U+1; k++) {
-				// Not too sure about this line here. What are we maxing here? Line 10 on pseudo
 				int firstI= Integer.MIN_VALUE;
 				int secondI= Integer.MIN_VALUE;
 				int thirdI= Integer.MIN_VALUE;
@@ -83,10 +82,6 @@ public class Greedy {
 				}
 			}
 			T[d] = TPrime;
-			
-			// I think this is the right range for k
-			//int tempMax = Integer.MIN_VALUE;
-			//int tempMin = Integer.MAX_VALUE;
 			
 			
 			//line 19 of psuedocode
@@ -120,34 +115,6 @@ public class Greedy {
 				}
 			}
 			
-			
-			
-			/*for (int k=Math.max(0,L-1); k<=U+1; k++) {
-				if (R[d][k] > Integer.MIN_VALUE) {
-					tempMin = Math.min(tempMin, R[d][k]);
-					tempMax = Math.max(tempMax, R[d][k]);
-				}
-			}
-			if (tempMax != Integer.MIN_VALUE) 
-				L = tempMin;
-			if (tempMin != Integer.MIN_VALUE)
-				U = tempMax;
-			tempMax = 0;
-			tempMin = 0;
-			
-			for (int k=Math.max(0,L-1); k<=U+1; k++) {
-				if (R[d][k] == N+k) {
-					tempMax = (Math.max(tempMax, R[d][k]));
-				}
-				if (R[d][k] == M) {
-					tempMin = (Math.min(tempMax, R[d][k]));
-				}
-			}
-			L = Math.max(L, tempMax+2);
-			U = Math.min(U, tempMin-2);
-			
-			*/
-			// System.out.println("L and U is: " + L + " " + U);
 		}
 		System.out.println("T Prime is: " + TPrime);	
 	}
